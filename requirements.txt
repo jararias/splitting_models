@@ -1,0 +1,6 @@
+numpy
+panda
+scipy
+matplotlib
+loguru
+gisplit @ git+https://github.com/jararias/gisplit@main
