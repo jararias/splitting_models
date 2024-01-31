@@ -12,23 +12,37 @@ argumento, se busca en data['climate'] y se coge con el primer elemento.
 
 """
 
+import inspect
 import warnings
+from contextlib import suppress
 
 import numpy as np
-import pylab as pl
 import pandas as pd
-from matplotlib.colors import LogNorm
 from scipy.interpolate import griddata
 from loguru import logger
 
 import gisplit
 
+from . import models
 from .base import BaseSplittingModel
 from .dirint_coeffs import coeffs as DIRINT_COEFFS
 from .yang5_regimes import load_yang5_regime_grid
 
 
 logger.disable(__name__)
+
+
+def available_models():
+    def is_splitting_model(o):
+        with suppress(AttributeError):
+            return BaseSplittingModel in inspect.getmro(o)
+        return False
+    members = inspect.getmembers(models, predicate=is_splitting_model)
+    return [name for name, _ in members if name != 'BaseSplittingModel']
+
+
+def get(model_name, **kwargs):
+    return getattr(models, model_name)(**kwargs)
 
 
 class GISPLIT(BaseSplittingModel):
@@ -47,14 +61,16 @@ class GISPLIT(BaseSplittingModel):
     def _predict_K(self, data, **kwargs):
 
         climate = kwargs.pop('climate', None)
-        if 'climate' in data:
+        if (climate is None) and ('climate' in data):
             climate = data['climate'][0]
+
+        if climate is not None:
+            assert climate.upper() in 'ABCDE'
 
         gs = gisplit.GISPLIT(climate=climate, **kwargs)
         pred = gs.predict(data, **kwargs)
 
         return pred.eval('''dif/(dir+dif)''').clip(0., 1.)
-        # return pred.dif.divide(pred.dir + pred.dif).clip(0., 1.)
 
 
 class Erbs(BaseSplittingModel):
@@ -400,7 +416,7 @@ class Abreu(BaseSplittingModel):
             climate = data['climate'][0]
 
         if climate is None:
-            climate == 'C'
+            climate = 'C'
             warnings.warn('climate input missing. Assumed climate `C`', UserWarning)
 
         assert climate.upper() in 'ABCDE'
@@ -512,7 +528,7 @@ class Starke3(BaseSplittingModel):
             climate = data['climate'][0]
 
         if climate is None:
-            climate == 'C'
+            climate = 'C'
             warnings.warn('climate input missing. Assumed climate `C`', UserWarning)
 
         assert climate.upper() in 'ABCDE'
