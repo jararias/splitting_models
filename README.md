@@ -39,19 +39,18 @@ import splitting_models.models as sm
 print(sm.available_models())
 ```
 
-Currently, the implemented models are:
+Currently, the implemented models are: Abreu[^1], BRL[^2], DIRINT[^3], DISC[^4], Engerer2, Erbs, GISPLIT, Hollands, PaulescuBlaga, Perez2, Starke3, Yang4 and Yang5.
 
-```
-Abreu[^1], BRL, DIRINT, DISC, Engerer2, Erbs, GISPLIT, Hollands, PaulescuBlaga, Perez2, Starke3, Yang4 and Yang5.
-```
+[^1]: Abreu, E.F., Canhoto, P., and Costa, M.J. (2019) Prediction of diffuse horizontal irradiance using a new climate zone model. _Renewable and Sustainable Energy Reviews_, 110, 28-42. doi: [10.1016/j.rser.2019.04.055](https://doi.org/10.1016/j.rser.2019.04.055)
+[^2]: Ridley, B., Boland, J., and Lauret, P. (2010) Modelling of diffuse solar fraction with multiple predictors. _Renewable Energy_, 35(2), 478-483. doi: [10.1016/j.renene.2009.07.018](https://doi.org/10.1016/j.renene.2009.07.018)
+[^3]: Ineichen, P., Perez, R.R., Seal, R.D., Maxwell, E.L., and Zalenka, A.J.A.T. (1992) Dynamic global-to-direct irradiance conversion models. _ASHRAE Trans_, 98(1), 354-369. [pdf](https://access.archive-ouverte.unige.ch/access/metadata/242f6608-0e96-4566-bbb0-450d821670c7/download)
+[^4]: Maxwell, E.L. (1987) A Quasi-Physical Model for Converting Hourly Global Horizontal to Direct Normal Insolation, Tech. Rep. SERI/TR-215-3087, Golden, CO, Solar Energy Research Institute. [link](https://www.osti.gov/biblio/5987868)
 
 To perform the separation, a two-step _get-and-predict_ process is required. The general pattern is:
 
 ```python
 out_df = sm.get(<model_name>).predict(inp_df, **model_kwargs)
 ```
-
-[^1]: Abreu, C. and Costa, J. (2019) Prediction of diffuse horizontal irradiance using a new climate zone model. _Renew Sustain Energy Rev_. doi: 10.1016/j.rser.2019.04.055
 
 where:
 
