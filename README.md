@@ -39,7 +39,7 @@ import splitting_models.models as sm
 print(sm.available_models())
 ```
 
-Currently, the implemented models are: Abreu[^1], BRL[^2], DIRINT[^3], DISC[^4], Engerer2[^5][^6], Erbs[^7], GISPLIT[^8], Hollands[^9], PaulescuBlaga, Perez2, Starke3, Yang4 and Yang5.
+Currently, the implemented models are: Abreu[^1], BRL[^2], DIRINT[^3], DISC[^4], Engerer2[^5][^6], Erbs[^7], GISPLIT[^8], Hollands[^9], PaulescuBlaga[^10], Perez2[^11], Starke3[^12][^13][^14], Yang4[^15] and Yang5[^16].
 
 [^1]: Abreu, E.F., Canhoto, P., and Costa, M.J. (2019) Prediction of diffuse horizontal irradiance using a new climate zone model. _Renewable and Sustainable Energy Reviews_, 110, 28-42. doi: [10.1016/j.rser.2019.04.055](https://doi.org/10.1016/j.rser.2019.04.055)
 [^2]: Ridley, B., Boland, J., and Lauret, P. (2010) Modelling of diffuse solar fraction with multiple predictors. _Renewable Energy_, 35(2), 478-483. doi: [10.1016/j.renene.2009.07.018](https://doi.org/10.1016/j.renene.2009.07.018)
@@ -50,6 +50,13 @@ Currently, the implemented models are: Abreu[^1], BRL[^2], DIRINT[^3], DISC[^4],
 [^7]: Erbs, D.G., Klein, S.A., and Duffie, J.A. (1982) Estimation of the diffuse radiation fraction for hourly, daily and monthly-average global radiation. _Solar Energy_, 28(4), 293-302. doi: [10.1016/0038-092X(82)90302-4](https://doi.org/10.1016/0038-092X(82)90302-4)
 [^8]: Ruiz-Arias, J.A., and Gueymard, C.A. (2024) GISPLIT: High-performance global solar irradiance component-separation model dynamically constrained by 1-min sky conditions. _Solar Energy_, 269, 112363. doi: [10.1016/j.solener.2024.112363](https://doi.org/10.1016/j.solener.2024.112363)
 [^9]: Hollands, K.G.T. (1985) A derivation of the diffuse fraction's dependence on the clearness index. _Solar Energy_, 35(2), 131-136. doi: [10.1016/0038-092X(85)90003-9](https://doi.org/10.1016/0038-092X(85)90003-9)
+[^10]: Paulescu, E., and Blaga, R. (2019) A simple and reliable empirical model with two predictors for estimating 1-minute diffuse fraction. _Solar Energy_, 180, 75-84. doi: [10.1016/j.solener.2019.01.029](https://doi.org/10.1016/j.solener.2019.01.029)
+[^11]: Perez, R., Ineichen, P., Moore, K., Kmiecik, M., Chain, C., George, R., and Vignola, F. (2002) A new operational model for satellite-derived irradiances: description and validation. _Solar Energy_, 73(5), 307-317. doi: [10.1016/S0038-092X(02)00122-6](https://doi.org/10.1016/S0038-092X(02)00122-6)
+[^12]: Starke, A.R., Lemos, L.F., Boland, J., Cardemil, J.M., and Colle, S. (2018) Resolution of the cloud enhancement problem for one-minute diffuse radiation prediction. _Renewable Energy_, 125, 472-484. doi: [10.1016/j.renene.2018.02.107](https://doi.org/10.1016/j.renene.2018.02.107)
+[^13]: Starke, A.R., Lemos, L.F., Barni, C.M., Machado, R.D., Cardemil, J.M., Boland, J., and Colle, S. (2021) Assessing one-minute diffuse fraction models based on worldwide climate features. _Renewable Energy_, 177, 700-714. doi: [10.1016/j.renene.2021.05.108](https://doi.org/10.1016/j.renene.2021.05.108)
+[^14]: Yang, D. (2022) Estimating 1-min beam and diffuse irradiance from the global irradiance: A review and an extensive worldwide comparison of latest separation models at 126 stations. _Renewable and Sustainable Energy Reviews_, 159, 112195. doi: [10.1016/j.rser.2022.112195](https://doi.org/10.1016/j.rser.2022.112195)
+[^15]: Yang, D. (2021) Temporal-resolution cascade model for separation of 1-min beam and diffuse irradiance. _Journal of Renewable and Sustainable Energy_, 13(5). doi: [10.1063/5.0067997](https://doi.org/10.1063/5.0067997)
+[^16]: Yang, D., Gu, Y., Mayer, M.J., Gueymard, C.A., Wang, W., Kleissl, J., Mengying L.E., Yinghao C.F. and Bright, J.M. (2024) Regime-dependent 1-min irradiance separation model with climatology clustering. _Renewable and Sustainable Energy Reviews_, 189, 113992. doi: [10.1016/j.rser.2023.113992](https://doi.org/10.1016/j.rser.2023.113992)
 
 To perform the separation, a two-step _get-and-predict_ process is required. The general pattern is:
 
