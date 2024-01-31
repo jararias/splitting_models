@@ -39,12 +39,17 @@ import splitting_models.models as sm
 print(sm.available_models())
 ```
 
-Currently, the implemented models are: Abreu[^1], BRL[^2], DIRINT[^3], DISC[^4], Engerer2, Erbs, GISPLIT, Hollands, PaulescuBlaga, Perez2, Starke3, Yang4 and Yang5.
+Currently, the implemented models are: Abreu[^1], BRL[^2], DIRINT[^3], DISC[^4], Engerer2[^5][^6], Erbs[^7], GISPLIT[^8], Hollands[^9], PaulescuBlaga, Perez2, Starke3, Yang4 and Yang5.
 
 [^1]: Abreu, E.F., Canhoto, P., and Costa, M.J. (2019) Prediction of diffuse horizontal irradiance using a new climate zone model. _Renewable and Sustainable Energy Reviews_, 110, 28-42. doi: [10.1016/j.rser.2019.04.055](https://doi.org/10.1016/j.rser.2019.04.055)
 [^2]: Ridley, B., Boland, J., and Lauret, P. (2010) Modelling of diffuse solar fraction with multiple predictors. _Renewable Energy_, 35(2), 478-483. doi: [10.1016/j.renene.2009.07.018](https://doi.org/10.1016/j.renene.2009.07.018)
 [^3]: Ineichen, P., Perez, R.R., Seal, R.D., Maxwell, E.L., and Zalenka, A.J.A.T. (1992) Dynamic global-to-direct irradiance conversion models. _ASHRAE Trans_, 98(1), 354-369. [pdf](https://access.archive-ouverte.unige.ch/access/metadata/242f6608-0e96-4566-bbb0-450d821670c7/download)
 [^4]: Maxwell, E.L. (1987) A Quasi-Physical Model for Converting Hourly Global Horizontal to Direct Normal Insolation, Tech. Rep. SERI/TR-215-3087, Golden, CO, Solar Energy Research Institute. [link](https://www.osti.gov/biblio/5987868)
+[^5]: Engerer, N.A. (2015) Minute resolution estimates of the diffuse fraction of global irradiance for southeastern Australia. _Solar Energy_, 116, 215-237. doi: [10.1016/j.solener.2015.04.012](https://doi.org/10.1016/j.solener.2015.04.012)
+[^6]: Bright, J.M., and Engerer, N.A. (2019) Engerer2: Global re-parameterisation, update, and validation of an irradiance separation model at different temporal resolutions. _Journal of Renewable and Sustainable Energy_, 11(3). doi: [10.1063/1.5097014](https://doi.org/10.1063/1.5097014)
+[^7]: Erbs, D.G., Klein, S.A., and Duffie, J.A. (1982) Estimation of the diffuse radiation fraction for hourly, daily and monthly-average global radiation. _Solar Energy_, 28(4), 293-302. doi: [10.1016/0038-092X(82)90302-4](https://doi.org/10.1016/0038-092X(82)90302-4)
+[^8]: Ruiz-Arias, J.A., and Gueymard, C.A. (2024) GISPLIT: High-performance global solar irradiance component-separation model dynamically constrained by 1-min sky conditions. _Solar Energy_, 269, 112363. doi: [10.1016/j.solener.2024.112363](https://doi.org/10.1016/j.solener.2024.112363)
+[^9]: Hollands, K.G.T. (1985) A derivation of the diffuse fraction's dependence on the clearness index. _Solar Energy_, 35(2), 131-136. doi: [10.1016/0038-092X(85)90003-9](https://doi.org/10.1016/0038-092X(85)90003-9)
 
 To perform the separation, a two-step _get-and-predict_ process is required. The general pattern is:
 
