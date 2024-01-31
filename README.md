@@ -1,19 +1,30 @@
-# Global irradiance splitting (GISPLIT)
+# Global solar irradiance component-separation models
 
 
 ### Installation
 
 ```sh
-python3 -m pip install git+https://github.com/jararias/gisplit@main
+python3 -m pip install git+https://github.com/jararias/splitting_models@main
 ```
 
-### Tests
+### Benchmarking
+
+From the command-line interface
+
+```sh
+python3 -c "import splitting_models.tests as sm_tests; sm_tests.basic_test()"
+```
+
+or rather
 
 ```python
-import gisplit.tests as gs_tests
-gs_tests.test_1min_data()
+import pylab as pl
+import splitting_models.tests as sm_tests
+sm_tests.basic_test()
 pl.show()
 ```
+
+from a python script.
 
 ### Brief use notes
 
