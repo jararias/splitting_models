@@ -60,6 +60,7 @@ class GISPLIT(BaseSplittingModel):
     def __init__(self, **kwargs):
         max_sza = kwargs.pop('max_sza', 85.)
         self._gisplit_kwargs = kwargs
+        self._gisplit_kwargs['time_step'] = kwargs.get('time_step', '1min')
         super().__init__(max_sza)
 
     def _predict_K(self, data, **kwargs):
