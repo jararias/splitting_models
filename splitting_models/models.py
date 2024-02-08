@@ -59,18 +59,22 @@ class GISPLIT(BaseSplittingModel):
 
     def __init__(self, **kwargs):
         max_sza = kwargs.pop('max_sza', 85.)
+        self._gisplit_kwargs = kwargs
         super().__init__(max_sza)
 
     def _predict_K(self, data, **kwargs):
 
-        climate = kwargs.pop('climate', None)
+        # climate = kwargs.pop('climate', None)
+        climate = self._gisplit_kwargs.get('climate', None)
         if (climate is None) and ('climate' in data):
             climate = data['climate'][0]
 
         if climate is not None:
             assert climate.upper() in 'ABCDE'
 
-        gs = gisplit.GISPLIT(climate=climate, **kwargs)
+        gisplit_kwargs = self._gisplit_kwargs
+        gisplit_kwargs['climate'] = climate
+        gs = gisplit.GISPLIT(**gisplit_kwargs)
         pred = gs.predict(data, **kwargs)
 
         return pred.eval('''dif/(dir+dif)''').clip(0., 1.)
