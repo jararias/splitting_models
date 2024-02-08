@@ -12,10 +12,16 @@ from matplotlib.colors import LogNorm
 
 from loguru import logger
 
-from gisplit.tools.filters import (
-    add_site_to_index,
-    drop_site_from_index
-)
+try:
+    from sg_gisplit.tools.filters import (
+        add_site_to_index,
+        drop_site_from_index
+    )
+except ModuleNotFoundError:
+    from gisplit.tools.filters import (
+        add_site_to_index,
+        drop_site_from_index
+    )
 
 
 logger.disable(__name__)
