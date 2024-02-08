@@ -21,7 +21,10 @@ import pandas as pd
 from scipy.interpolate import griddata
 from loguru import logger
 
-import gisplit
+try:
+    import sg_gisplit as gisplit
+except ModuleNotFoundError:
+    import gisplit
 
 from . import models
 from .base import BaseSplittingModel
