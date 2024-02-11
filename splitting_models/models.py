@@ -476,6 +476,77 @@ class PaulescuBlaga(BaseSplittingModel):
         return K.clip(0., 1.)
 
 
+class PaulescuPaulescu1(BaseSplittingModel):
+    """
+    Equation 5 In:
+      Paulescu and Paulescu (2023) Minute-Scale Models for the Diffuse
+      Fraction of Global Solar Radiation Balanced between Accuracy and
+      Accessibility, Applied Sciences, doi: 10.3390/app13116558
+    """
+
+    def _predict_K(self, data, **kwargs):
+
+        def upscale(s, dt):
+            return s.resample(dt).mean().reindex(s.index, method='ffill')
+
+        sza = data['sza']
+        daytime = sza < self._max_sza
+        Kt = data.ghi.divide(data.eth).where(daytime, np.nan)
+        Gcs = data.ghics*3.6e-3  # ghics in MJ m-2 h-1
+
+        ghi_hourly = upscale(data.ghi, 'h')
+        eth_hourly = upscale(data.eth, 'h')
+        Kt_hourly = ghi_hourly.divide(eth_hourly).clip(0., 1.)
+
+        ghi_daily = upscale(data.ghi, 'D')
+        eth_daily = upscale(data.eth, 'D')
+        Kt_daily = ghi_daily.divide(eth_daily).clip(0., 1.)
+
+        psi = 0.5 * (Kt.shift(-1) + Kt.shift(+1))
+        Kcs = data.ghi.divide(data.ghics).where(self._daytime, np.nan).clip(0.)
+        Kde = (data.ghi.sub(data.ghics).divide(data.ghi).clip(0.)
+               .where(self._daytime, other=np.nan))
+        Kt2 = Kt*Kt
+        dKtc = data.ghics.divide(data.eth).where(self._daytime, np.nan).clip(0.) - Kt
+        dKtc2 = dKtc*dKtc
+        dKtc3 = dKtc*dKtc2
+
+        K = ((1. + 7.217*Kcs*Kt*dKtc2 - 0.656*(Kcs**0.5)*Kt2 + 7.947*Kde +
+              0.187*Gcs - 2.747*Kt2*(Kt_hourly**3) - 15.379*Kt*psi*dKtc3) /
+             (1. + 1.655*Kcs*dKtc3 + 14.008*(Kt_daily*Kt)**3 + 17.477*Kde + 0.16*Gcs))
+
+        return K.clip(0., 1.)
+
+
+class PaulescuPaulescu2(BaseSplittingModel):
+    """
+    Equation 6 In:
+      Paulescu and Paulescu (2023) Minute-Scale Models for the Diffuse
+      Fraction of Global Solar Radiation Balanced between Accuracy and
+      Accessibility, Applied Sciences, doi: 10.3390/app13116558
+    """
+
+    def _predict_K(self, data, **kwargs):
+
+        def upscale(s, dt):
+            return s.resample(dt).mean().reindex(s.index, method='ffill')
+
+        Kt = data.ghi.divide(data.eth).where(daytime, np.nan)
+
+        ghi_hourly = upscale(data.ghi, 'h')
+        eth_hourly = upscale(data.eth, 'h')
+        Kt_hourly = ghi_hourly.divide(eth_hourly).clip(0., 1.)
+
+        ghi_daily = upscale(data.ghi, 'D')
+        eth_daily = upscale(data.eth, 'D')
+        Kt_daily = ghi_daily.divide(eth_daily).clip(0., 1.)
+
+        K = ((1. - 2.525*Kt + 1.834*Kt*Kt - 0.204*(Kt*Kt_hourly)**2) /
+             (1. - 2.578*Kt + 1.902*Kt*Kt + 1.054*(Kt*Kt_daily)**2))
+
+        return K.clip(0., 1.)
+
+
 class Starke3(BaseSplittingModel):
     """
     This model is also known as BRL-minute as stated in its original
