@@ -1,6 +1,6 @@
-# Global solar irradiance component-separation models
+# Global solar irradiance components separation models
 
-A common-interface library for state-of-the-art (and others) global solar irradiance component-separation models. It was developed while working on the following paper:
+A common-interface library for state-of-the-art (and others) global solar irradiance components separation models. It was developed while working on the following paper:
 
 > Ruiz-Arias, J.A., and Gueymard, C.A. (2024) Review and performance benchmarking of 1-min solar irradiance components separation methods: The critical role of dynamically-constrained sky conditions. Submitted for publication to _Renewable and Sustainable Energy Reviews_ 
 
@@ -28,7 +28,7 @@ sm_tests.basic_test()
 pl.show()
 ```
 
-from a python script.
+from a python script. This test/benchmark makes use of a public [dataset](https://github.com/jararias/splitting_models/tree/main#testing-dataset).
 
 ### Usage
 
@@ -84,7 +84,7 @@ where `kwargs` includes both model-specific keywords and diagnostics options.
 
 #### Testing dataset
 
-To provide an easy method to benchmark here the models, a subset of the BSRN validation dataset used in the benchmark paper is available in zenodo. It is easily accessible as:
+To provide an easy method to benchmark the models, a subset of the BSRN validation dataset used in the benchmark paper is available in [zenodo](https://zenodo.org/records/10593079). It is easily accessible as:
 
 ```python
 import splitting_models.tests as sm_tests
