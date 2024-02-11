@@ -1,5 +1,11 @@
 # Global solar irradiance components separation models
 
+<p align="center">
+<figure>
+    <img src="assets/model_benchmark.png" alt="GISPLIT diagnostics">
+</figure>
+</p>
+
 A common-interface library for state-of-the-art (and others) global solar irradiance components separation models. It was developed while working on the following paper:
 
 > Ruiz-Arias, J.A., and Gueymard, C.A. (2024) Review and performance benchmarking of 1-min solar irradiance components separation methods: The critical role of dynamically-constrained sky conditions. Submitted for publication to _Renewable and Sustainable Energy Reviews_ 
