@@ -503,11 +503,11 @@ class PaulescuPaulescu1(BaseSplittingModel):
         Kt_daily = ghi_daily.divide(eth_daily).clip(0., 1.)
 
         psi = 0.5 * (Kt.shift(-1) + Kt.shift(+1))
-        Kcs = data.ghi.divide(data.ghics).where(self._daytime, np.nan).clip(0.)
+        Kcs = data.ghi.divide(data.ghics).where(daytime, np.nan).clip(0.)
         Kde = (data.ghi.sub(data.ghics).divide(data.ghi).clip(0.)
                .where(self._daytime, other=np.nan))
         Kt2 = Kt*Kt
-        dKtc = data.ghics.divide(data.eth).where(self._daytime, np.nan).clip(0.) - Kt
+        dKtc = data.ghics.divide(data.eth).where(daytime, np.nan).clip(0.) - Kt
         dKtc2 = dKtc*dKtc
         dKtc3 = dKtc*dKtc2
 
@@ -531,6 +531,8 @@ class PaulescuPaulescu2(BaseSplittingModel):
         def upscale(s, dt):
             return s.resample(dt).mean().reindex(s.index, method='ffill')
 
+        sza = data['sza']
+        daytime = sza < self._max_sza
         Kt = data.ghi.divide(data.eth).where(daytime, np.nan)
 
         ghi_hourly = upscale(data.ghi, 'h')
