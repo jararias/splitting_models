@@ -505,7 +505,7 @@ class PaulescuPaulescu1(BaseSplittingModel):
         psi = 0.5 * (Kt.shift(-1) + Kt.shift(+1))
         Kcs = data.ghi.divide(data.ghics).where(daytime, np.nan).clip(0.)
         Kde = (data.ghi.sub(data.ghics).divide(data.ghi).clip(0.)
-               .where(self._daytime, other=np.nan))
+               .where(daytime, other=np.nan))
         Kt2 = Kt*Kt
         dKtc = data.ghics.divide(data.eth).where(daytime, np.nan).clip(0.) - Kt
         dKtc2 = dKtc*dKtc
