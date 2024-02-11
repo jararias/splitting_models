@@ -28,7 +28,7 @@ sm_tests.basic_test()
 pl.show()
 ```
 
-from a python script. This test/benchmark makes use of a public [dataset](https://github.com/jararias/splitting_models/tree/main#testing-dataset).
+from a python script. This test/benchmark makes use of a public [dataset](https://github.com/jararias/splitting_models/tree/main#testing-dataset) specifically prepared for this task.
 
 ### Usage
 
