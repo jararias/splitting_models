@@ -3,10 +3,11 @@
 <p align="center">
 <figure>
     <img src="assets/model_benchmark.png" alt="GISPLIT diagnostics">
+    <figcaption><em>Error metrics for DNI predicted by 14 separation models (angular dimension) for five BSRN stations. The radial dimension is the day of the year.</em></figcaption>
 </figure>
 </p>
 
-A common-interface library for state-of-the-art (and others) global solar irradiance components separation models. It was developed while working on the following paper:
+A common-interface library for state-of-the-art (and some others) global solar irradiance components separation models. It was developed while working on the following paper:
 
 > Ruiz-Arias, J.A., and Gueymard, C.A. (2024) Review and performance benchmarking of 1-min solar irradiance components separation methods: The critical role of dynamically-constrained sky conditions. Submitted for publication to _Renewable and Sustainable Energy Reviews_ 
 
