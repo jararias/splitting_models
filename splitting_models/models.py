@@ -621,8 +621,8 @@ class Starke3(BaseSplittingModel):
         daytime = sza < self._max_sza
         Kt = data.ghi.divide(data.eth).where(daytime, np.nan)
 
-        ghi_hourly = upscale(data.ghi, 'H')
-        eth_hourly = upscale(data.eth, 'H')
+        ghi_hourly = upscale(data.ghi, 'h')
+        eth_hourly = upscale(data.eth, 'h')
         Kt_hourly = ghi_hourly.divide(eth_hourly).clip(0., 1.)
 
         ghi_daily = upscale(data.ghi, 'D')
