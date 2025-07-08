@@ -68,7 +68,7 @@ class GISPLIT(BaseSplittingModel):
         # climate = kwargs.pop('climate', None)
         climate = self._gisplit_kwargs.get('climate', None)
         if (climate is None) and ('climate' in data):
-            climate = data['climate'][0]
+            climate = data['climate'].iloc[0]
 
         if climate is not None:
             assert climate.upper() in 'ABCDE'
