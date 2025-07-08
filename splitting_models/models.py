@@ -792,7 +792,7 @@ class Yang5(Yang4):
                 raise ValueError(f'missing required columns {list(missing)}')
             variates['lon'] = data['longitude']
             variates['lat'] = data['latitude']
-            K = variates.groupby([variates.lon, variates.lat]).apply(calculate_K).T
+            K = variates.groupby([variates.lon, variates.lat]).apply(calculate_K, including_groups=True).T
             K.columns = pd.Index(['K'])
         else:
             K = calculate_K(variates, Yang5.parameters(regime))
