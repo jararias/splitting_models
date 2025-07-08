@@ -792,7 +792,14 @@ class Yang5(Yang4):
                 raise ValueError(f'missing required columns {list(missing)}')
             variates['lon'] = data['longitude']
             variates['lat'] = data['latitude']
-            K = variates.groupby([variates.lon, variates.lat]).apply(calculate_K, include_groups=True).T
+            # By default, "groupby" always has included the grouping columns in the groups. This behaviour will change
+            # in future releases and it is thus warned. There is a new argument "include_groups" to include or not the
+            # grouping columns in the groups. This is nice because ensures the user to be aware of what is being done.
+            # However, setting include_groups=True, when this is the intended behaviour, does not silence the warning.
+            # The subterfuge to silence it is very ugly, as one has to select the required columns in the groups right
+            # after groupby and before apply.
+            # OLD VERSION: K = variates.groupby([variates.lon, variates.lat]).apply(calculate_K).T
+            K = variates.groupby([variates.lon, variates.lat])[variates.columns].apply(calculate_K, include_groups=True).T
             K.columns = pd.Index(['K'])
         else:
             K = calculate_K(variates, Yang5.parameters(regime))
