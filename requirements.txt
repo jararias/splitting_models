@@ -1,5 +1,5 @@
 numpy
-panda
+pandas
 scipy
 matplotlib
 loguru
